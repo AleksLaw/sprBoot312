@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>userPageInfo</title>
+    <link rel="stylesheet" href="/css/style.css" type="text/css" >
+
+</head>
+<body>
+
+<table align="center">
+    <h1 align="center">User information page</h1>
+    <thead>
+    <h3 align="center">User info</h3>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Password</th>
+        <th>Roles</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user : ${listUsers}">
+
+        <td  th:text="${user.id}">Product ID</td>
+        <td  th:text="${user.name}">Name</td>
+        <td  th:text="${user.password}">Brand</td>
+        <td  th:text="${user.userRoles}">Made in</td>
+
+    </tr>
+    </tbody>
+</table>
+<div align="center">
+    <form th:action="@{/logout}" method="post">
+        <input class="logout" type="submit" value="Logout"/>
+    </form>
+</div>
+</body>
+</html>
+

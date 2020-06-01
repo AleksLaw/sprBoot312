@@ -1,0 +1,73 @@
+
+.action {
+    width: 233px;
+    background: firebrick; /* Красный цвет фона для удаления*/
+    color: white; /* Белые буквы */
+    font-size: 12pt; /* Размер шрифта в пунктах */
+}
+
+.logoutCancel {
+    width: 233px;
+    background: darkgrey; /* Серый цвет фона для изменения*/
+    color: white; /* Белые буквы */
+    font-size: 12pt;
+}
+.logout {
+    width: 830px;
+    background: darkgrey; /* Серый цвет фона для изменения*/
+    color: white; /* Белые буквы */
+    font-size: 12pt;
+}
+
+table {
+    border: 1px solid black;
+    width: 610px;
+}
+
+tr {
+    height: 15px;
+}
+
+th {
+    border: 1px solid black
+}
+
+td {
+    align-content: center;
+    border: 1px solid black
+}
+
+.cellbut1 {
+    width: 100%;
+    height: min-content;
+    background: firebrick; /* Красный цвет фона для удаления*/
+    color: white; /* Белые буквы */
+    font-size: 12pt; /* Размер шрифта в пунктах */
+}
+
+.cellbut2 {
+    width: 100%;
+    height: min-content;
+    background: cornflowerblue; /* Синий цвет фона для изменения*/
+    color: white; /* Белые буквы */
+    font-size: 12pt; /* Размер шрифта в пунктах */
+}
+
+.cellbut3 {
+    width: 610px;
+    margin-bottom: 1px;
+    height: min-content;
+    background: darkgreen; /* Зеленый цвет фона для добавления */
+    color: white; /* Белые буквы */
+    font-size: 12pt; /* Размер шрифта в пунктах */
+}
+
+.cellbut4 {
+    width: 610px;
+    margin-bottom: 1px;
+    height: min-content;
+    background: darkgrey; /* Серый цвет фона для изменения*/
+    color: white; /* Белые буквы */
+    font-size: 12pt; /* Размер шрифта в пунктах */
+}
+

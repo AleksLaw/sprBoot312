@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>addUserPage</title>
+    <link rel="stylesheet" href="/css/style.css" type="text/css" >
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<div align="center">
+    <h2>Add new user</h2>
+    Name<br>
+    <form method="post" action="/admin/add">
+    <input size="30" name="name"> <br>
+    Password<br>
+    <input size="30" name="password"> <br>
+    Role<br>
+        <div class="select" style="width:225px;" align="center">
+            <select name="role" multiple size="2" style="width: 225px; ">
+                <option> ADMIN</option>
+                <option selected> USER</option>
+            </select>
+        </div>
+        <br>
+        <input class="action" type="submit" value="Add">
+    </form>
+    <input class="logoutCancel" type="button" value="Close" onClick='location.href="/admin/adminPage"'/>
+    <form th:action="@{/logout}" method="post">
+        <input class="logoutCancel" type="submit" value="Logout"/>
+    </form>
+</div>
+</body>
+</html>

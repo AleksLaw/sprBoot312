@@ -5,6 +5,8 @@ import main.model.Role;
 import main.model.User;
 import main.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -13,10 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 @Controller
 public class UserController {
@@ -29,7 +28,12 @@ public class UserController {
 
     @GetMapping("/")
     public String greeting() {
-        return "hello";
+        Collection<? extends GrantedAuthority> authorities = SecurityContextHolder.getContext().getAuthentication().getAuthorities();
+        if (authorities.contains(Role.ADMIN)) {
+            return "redirect:/admin/adminPage";
+        }
+
+        return "redirect:/user/userPageInfo";
     }
 
     @GetMapping("/newAdmin")
@@ -68,8 +72,6 @@ public class UserController {
 
     @PostMapping("/admin/adminPage")
     public ModelAndView viewAdminPage(User user) {
-
-
         Iterable<User> list = userRepo.findAll();
         ModelAndView modelAndView = new ModelAndView("adminPage");
         modelAndView.getModelMap().addAttribute("listUsers", list);
@@ -140,21 +142,21 @@ public class UserController {
         return userRoles;
     }
 
-    @GetMapping("/reg")
-    private String showRegisterPage() {
-        return "reg";
-    }
-
-    @PostMapping("/reg")
-    private String showRegisterPageByAddNewUser(User user, Map<String, Object> model) {
-        User byName = userRepo.findByName(user.getName());
-        if (byName != null) {
-            model.put("message", "This isn't new User");
-            return "reg";
-        }
-        user.setUserRoles(Collections.singleton(Role.ADMIN));
-        userRepo.save(user);
-        return "redirect:/login";
-    }
+//    @GetMapping("/reg")
+//    private String showRegisterPage() {
+//        return "reg";
+//    }
+//
+//    @PostMapping("/reg")
+//    private String showRegisterPageByAddNewUser(User user, Map<String, Object> model) {
+//        User byName = userRepo.findByName(user.getName());
+//        if (byName != null) {
+//            model.put("message", "This isn't new User");
+//            return "reg";
+//        }
+//        user.setUserRoles(Collections.singleton(Role.ADMIN));
+//        userRepo.save(user);
+//        return "redirect:/login";
+//    }
 
 }

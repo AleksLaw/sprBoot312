@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>editUser</title>
+    <link rel="stylesheet" href="/css/style.css" type="text/css" >
+</head>
+<body>
+<div align="center">
+
+    <h2 align="center">Edit user</h2>
+    <form method="post" action="/admin/edit">
+        <tr th:each="user : ${listUsers}">
+            Id<br>
+            <input size="30" disabled th:placeholder="${user.id} "> <br>
+            Name<br>
+            <input size="30" th:placeholder="${user.name} " th:name="name" th:value="${user.name}"> <br>
+            Password<br>
+            <input size="30" th:placeholder="${user.password} " th:name="password" th:value="${user.password}"> <br>
+            Roles<br>
+            <div class="select" style="width:225px;" align="center">
+                <select name="role" multiple size="2" style="width: 225px; ">
+                    <option> ADMIN</option>
+                    <option selected> USER</option>
+                </select>
+            </div>
+            <br>
+            <input type="hidden" name="id" th:value="${user.id}">
+            <input class="action" type="submit" value="Edit">
+    </form>
+
+    <input class="logoutCancel" type="button" value="Close" onClick='location.href="/admin/adminPage"'/>
+
+
+    <form th:action="@{/logout}" method="post">
+        <input class="logoutCancel" type="submit" value="Logout"/>
+    </form>
+
+
+</div>
+</body>
+</html>
+
+

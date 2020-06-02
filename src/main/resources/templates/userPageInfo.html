@@ -1,39 +1,91 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>userPageInfo</title>
-    <link rel="stylesheet" href="/css/style.css" type="text/css" >
+    <meta charset="UTF-8">
+    <!--    <link rel="stylesheet" href="/css/style.css" type="text/css" >-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+          crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+            integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+            crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 </head>
 <body>
-
-<table align="center">
-    <h1 align="center">User information page</h1>
-    <thead>
-    <h3 align="center">User info</h3>
-    <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Password</th>
-        <th>Roles</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="user : ${listUsers}">
-
-        <td  th:text="${user.id}">Product ID</td>
-        <td  th:text="${user.name}">Name</td>
-        <td  th:text="${user.password}">Brand</td>
-        <td  th:text="${user.userRoles}">Made in</td>
-
-    </tr>
-    </tbody>
-</table>
-<div align="center">
-    <form th:action="@{/logout}" method="post">
-        <input class="logout" type="submit" value="Logout"/>
-    </form>
+<div class="row-fluid ">
+    <div>
+        <nav class="navbar navbar-flex fixed-top bg-dark text-light">
+            <!--            <div th:object="*{currentUser}">-->
+            <p><b><span th:text="${currentUser.name}"></span></b> <span> with roles:</span> <span th:text="${currentUser.userRoles}"></span></p>
+            <!--            <label class="navbar-brand" href="#"><p class="text-secondary"th:text="${currentUser.email}"><h6>${currentUser.email} th:text="${currentUser.userRoles}</h6>  with roles: " </p></label>-->
+            <!--            </div>-->
+            <form th:action="@{/logout}" method="post">
+                <a href="/logout">
+                    <p class="text-secondary text-right" >Sing out</p>
+                </a>
+            </form>
+        </nav>
+    </div>
+</div>
+<div class="row">
+    <div class="col-2">
+        <br>
+        <br>
+        <br>
+        <br>
+        <ul class="list-group ">
+            <li class="list-group-item border-0 active">
+                <a data-toggle="tab" href="#user" class=" text-dark">User</a>
+            </li>
+        </ul>
+    </div>
+    <div class="col-10 ">
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <h1>Admin panel</h1>
+        <div class="tab-content">
+            <div class="tab-pane container  active" id="user">
+                <div>
+                    <br>
+                    <h4>About user</h4>
+                    <table class="table table-striped">
+                        <thead class="bg-light">
+                        <tr>
+                            <th>ID</th>
+                            <th>First name</th>
+                            <th>Last name</th>
+                            <th>Age</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr >
+                            <td th:text="${currentUser.id}">ID</td>
+                            <td th:text="${currentUser.name}">Name</td>
+                            <td th:text="${currentUser.lastName}">Last name</td>
+                            <td th:text="${currentUser.age}">Age</td>
+                            <td th:text="${currentUser.email}">email</td>
+                            <td th:text="${currentUser.userRoles}">Roles</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 </html>
-

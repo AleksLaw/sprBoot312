@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta charset="UTF-8">
     <!--    <link rel="stylesheet" href="/css/style.css" type="text/css" >-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
           integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
@@ -14,15 +15,17 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
             integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
             crossorigin="anonymous"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 </head>
 <body>
-
 <div class="row-fluid ">
     <div>
         <nav class="navbar navbar-flex fixed-top bg-dark">
             <label class="navbar-brand" href="#"><p class="text-secondary"> User@nfdnfnfn.ruS</p></label>
             <form th:action="@{/logout}" method="post">
-                <!--        <input class="ref" type="submit" value="Sing out"/>-->
                 <a href="/logout">
                     <p class="text-secondary text-right">Sing out</p>
                 </a>
@@ -32,12 +35,11 @@
 </div>
 <div class="row">
     <div class="col-2">
-
         <br>
         <br>
         <br>
         <br>
-        <div >
+        <div>
             <ul class="list-group ">
                 <li class="list-group-item border-0">Admin</li>
                 <li class="list-group-item border-0">User</li>
@@ -54,50 +56,117 @@
         <h1>Admin panel</h1>
         <ul class="nav nav-tabs">
             <li class="nav-item">
-                <a class="nav-link active" href="#">User table</a>
+                <a class="nav-link active" data-toggle="tab" href="#userTable">User table</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">New User</a>
+                <a class="nav-link" data-toggle="tab" href="#newUser">New User</a>
             </li>
         </ul>
+        <div class="tab-content">
+            <div class="tab-pane container active" id="userTable">
+                <br>
+                <h4>All users</h4>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>First name</th>
+                        <th>Last name</th>
+                        <th>Age</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="user : ${listUsers}">
+                        <td th:text="${user.id}">ID</td>
+                        <td th:text="${user.name}">Name</td>
+                        <td th:text="${user.name}">Last name</td>
+                        <td th:text="${user.name}">Age</td>
+                        <td th:text="${user.password}">email</td>
+                        <td th:text="${user.userRoles}">Roles</td>
+                        <td>
+                            <form th:action="@{/admin/editUserPage}" method="post">
+                                <input type="hidden" name="id" th:value="${user.id}">
+                                <input class="btn btn-info" type="submit" value="Edit">
+                            </form>
+                        </td>
+                        <td>
+                            <form th:action="@{/admin/delUserPage}" method="post">
+                                <input type="hidden" name="id" th:value="${user.id}">
+                                <input class="btn btn-danger" type="submit" value="Delete">
+                            </form>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="tab-pane container " id="newUser">
+                <div align="center">
+
+
+                    <div class="input-group">
+
+
+                        <form class="form-singin form-horizontal" th:action="@{/admin/add}" method="post">
+                            <h1 class="h3 mb-3 font-weight-normal">Add new user</h1>
+                            <label for="name">First name</label>
+                            <input type="text" class="form-control" id="name">
+                            <label for="lastName">Last name</label>
+                            <input type="text" class="form-control" id="lastName">
+                            <label for="age">Age</label>
+                            <input type="number" class="form-control" id="age">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" id="email">
+                            <label for="password">Password</label>
+                            <input type="text" class="form-control" id="password">
+                            <label >Role</label>
+                            <div class="select"  align="center">
+                                <select name="role" multiple size="2">
+                                    <option> ADMIN</option>
+                                    <option selected> USER</option>
+                                </select>
+                            </div>
+
+
+                            <button class="btn btn-lg btn-primary btn-block" type="submit">Add new user</button>
+                        </form>
+                    </div>
+
+
+
+
+<!--                    <form method="post" action="/admin/add">-->
+<!--                        <input size="30" name="name"> <br>-->
+<!--                        Password<br>-->
+<!--                        <input size="30" name="password"> <br>-->
+<!--                        Role<br>-->
+<!--                        <div class="select" style="width:225px;" align="center">-->
+<!--                            <select name="role" multiple size="2" style="width: 225px; ">-->
+<!--                                <option> ADMIN</option>-->
+<!--                                <option selected> USER</option>-->
+<!--                            </select>-->
+<!--                        </div>-->
+<!--                        <br>-->
+<!--                        <input class="action" type="submit" value="Add">-->
+<!--                    </form>-->
+                    <input class="logoutCancel" type="button" value="Close" onClick='location.href="/admin/adminPage"'/>
+                    <form th:action="@{/logout}" method="post">
+                        <input class="logoutCancel" type="submit" value="Logout"/>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
+__________________________________________________________________________________________________________________________________________________________________________________________________
 
-<table align="center">
 
-    <thead>
-    <h2 align="center">User table</h2>
-    <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Password</th>
-        <th>Roles</th>
-        <th>Edit</th>
-        <th>Delete</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="user : ${listUsers}">
-        <td th:text="${user.id}">Product ID</td>
-        <td th:text="${user.name}">Name</td>
-        <td th:text="${user.password}">Brand</td>
-        <td th:text="${user.userRoles}">Made in</td>
-        <td>
-            <form th:action="@{/admin/editUserPage}" method="post">
-                <input type="hidden" name="id" th:value="${user.id}">
-                <input class="cellbut2" type="submit" value="Edit">
-            </form>
-        </td>
-        <td>
-            <form th:action="@{/admin/delUserPage}" method="post">
-                <input type="hidden" name="id" th:value="${user.id}">
-                <input class="cellbut1" type="submit" value="Delete">
-            </form>
-        </td>
-    </tr>
-    </tbody>
-</table>
+__________________________________________________________________________________________________________________________________________________________________________________________________
+
 <div align="center">
 
     <form style="margin: 1px" method="get" action="/user/userPageInfo">
@@ -110,5 +179,7 @@
         <input class="cellbut4" type="submit" value="Logout"/>
     </form>
 </div>
+
+
 </body>
 </html>

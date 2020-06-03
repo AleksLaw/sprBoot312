@@ -40,23 +40,10 @@
         <br>
         <br>
         <br>
-
         <div class="list-group border-0">
             <a data-toggle="tab" href="#admin" class="list-group-item list-group-item-action border-0">Admin</a>
             <a data-toggle="tab" href="#user" class="list-group-item list-group-item-action border-0">User</a>
         </div>
-
-
-
-
-<!--        <ul class="list-group ">-->
-<!--            <li class="list-group-item border-0 active">-->
-<!--                <a data-toggle="tab" href="#admin" class=" text-dark">Admin</a>-->
-<!--            </li>-->
-<!--            <li class="list-group-item border-0">-->
-<!--                <a data-toggle="tab" href="#user" class="text-dark">User</a>-->
-<!--            </li>-->
-<!--        </ul>-->
     </div>
     <div class="col-10 ">
         <br>
@@ -103,7 +90,7 @@
                                 <td>
                                     <!-- Button to Open the Modal -->
                                     <button type="button" class="btn btn-primary" data-toggle="modal"
-                                            th:attr="data-target=${'#modalEdit' + user.getId()}"  >
+                                            th:attr="data-target=${'#modalEdit' + user.getId()}">
                                         Edit
                                     </button>
                                     <!-- The Modal -->
@@ -159,7 +146,8 @@
                                                                 <button type="button" class="btn btn-secondary"
                                                                         data-dismiss="modal">Close
                                                                 </button>
-                                                                <button th:action="@{/admin/edit}" type="submit" class="btn btn-info">Edit
+                                                                <button th:action="@{/admin/edit}" type="submit"
+                                                                        class="btn btn-info">Edit
                                                                 </button>
                                                             </div>
                                                         </form>
@@ -175,7 +163,7 @@
                                 <td>
                                     <!-- Button to Open the Modal -->
                                     <button type="button" class="btn btn-danger" data-toggle="modal"
-                                            th:attr="data-target=${'#modalDelete' + user.getId()}"  >
+                                            th:attr="data-target=${'#modalDelete' + user.getId()}">
                                         Delete
                                     </button>
                                     <!-- The Modal -->
@@ -229,7 +217,8 @@
                                                                 <button type="button" class="btn btn-secondary"
                                                                         data-dismiss="modal">Close
                                                                 </button>
-                                                                <button th:action="@{/admin/delete}" type="submit" class="btn btn-info">Delete
+                                                                <button th:action="@{/admin/delete}" type="submit"
+                                                                        class="btn btn-info">Delete
                                                                 </button>
                                                             </div>
                                                         </form>
@@ -302,8 +291,6 @@
                             <td th:text="${currentUser.age}">Age</td>
                             <td th:text="${currentUser.email}">email</td>
                             <td th:text="${currentUser.userRoles}">Roles</td>
-
-
                         </tr>
                         </tbody>
                     </table>
@@ -312,7 +299,5 @@
         </div>
     </div>
 </div>
-
-
 </body>
 </html>

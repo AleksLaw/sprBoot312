@@ -24,10 +24,7 @@
 <div class="row-fluid ">
     <div>
         <nav class="navbar navbar-flex fixed-top bg-dark text-light">
-            <!--            <div th:object="*{currentUser}">-->
             <p><b><span th:text="${currentUser.name}"></span></b> <span> with roles:</span> <span th:text="${currentUser.userRoles}"></span></p>
-            <!--            <label class="navbar-brand" href="#"><p class="text-secondary"th:text="${currentUser.email}"><h6>${currentUser.email} th:text="${currentUser.userRoles}</h6>  with roles: " </p></label>-->
-            <!--            </div>-->
             <form th:action="@{/logout}" method="post">
                 <a href="/logout">
                     <p class="text-secondary text-right" >Sing out</p>
@@ -54,7 +51,7 @@
         <br>
         <br>
         <br>
-        <h1>Admin panel</h1>
+        <h1>User information-page</h1>
         <div class="tab-content">
             <div class="tab-pane container  active" id="user">
                 <div>
